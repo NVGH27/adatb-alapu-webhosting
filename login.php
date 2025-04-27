@@ -1,29 +1,33 @@
 <?php
-session_start();
 include 'config.php';
+include 'menu.php';
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $sql = "SELECT jelszo FROM Felhasznalo WHERE felhasznalonev = :username";
+
+    // A lekérdezés most a szerepkor mezőt is lekéri
+    $sql = "SELECT FELHASZNALONEV, JELSZO, SZEREPKOR FROM Felhasznalo WHERE felhasznalonev = :username";
     $stmt = oci_parse($conn, $sql);
     oci_bind_by_name($stmt, ":username", $username);
 
     oci_execute($stmt);
+    $row = oci_fetch_assoc($stmt);
 
-    if (oci_fetch($stmt)) {
-        $hashed_password_from_db = oci_result($stmt, 'JELSZO');
+    if ($row) {
+        $hashed_password_from_db = $row['JELSZO'];
 
         if (password_verify($password, $hashed_password_from_db)) {
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $row['FELHASZNALONEV'];
+            $_SESSION['role'] = $row['SZEREPKOR'];  // Szerepkor beállítása
             $_SESSION['success_message'] = "Sikeres bejelentkezés!";
             header('Location: index.php');
             exit;
         } else {
-            echo "<p style='color:red;'>Hibás jelszó!</p>";
+            echo "<p class='error-message'>Hibás jelszó!</p>";
         }
     } else {
-        echo "<p style='color:red;'>Nincs ilyen felhasználó!</p>";
+        echo "<p class='error-message'>Nincs ilyen felhasználó!</p>";
     }
 
     oci_free_statement($stmt);
@@ -32,8 +36,30 @@ if(isset($_POST['login'])){
 oci_close($conn);
 ?>
 
-<form method="POST" action="">
-    <input type="text" name="username" placeholder="Felhasználónév" required>
-    <input type="password" name="password" placeholder="Jelszó" required>
-    <button type="submit" name="login">Bejelentkezés</button>
-</form>
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Bejelentkezés</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <input type="text" name="username" placeholder="Felhasználónév" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Jelszó" required>
+        </div>
+        <button type="submit" name="login">Bejelentkezés</button>
+    </form>
+    <p>Ha még nincs fiókod, <a href="signup.php">regisztrálj itt!</a></p>
+</div>
+
+</body>
+</html>

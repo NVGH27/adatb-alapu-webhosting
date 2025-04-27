@@ -1,6 +1,6 @@
 <?php
-session_start();
 include 'config.php';
+include 'menu.php';
 
 if (isset($_POST['submit'])) {
     $username = trim($_POST['username']);
@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     $confirm_password = $_POST['confirm_password'];
 
     if ($password !== $confirm_password) {
-        echo "<p style='color:red;'>A jelszavak nem egyeznek!</p>";
+        echo "<p styles='color:red;'>A jelszavak nem egyeznek!</p>";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $check_sql = "SELECT * FROM Felhasznalo WHERE felhasznalonev = :username OR email = :email";
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
         oci_execute($stmt_check);
 
         if (oci_fetch($stmt_check)) {
-            echo "<p style='color:red;'>A felhasználónév vagy email már létezik!</p>";
+            echo "<p styles='color:red;'>A felhasználónév vagy email már létezik!</p>";
         } else {
             $role = 'user';
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                 exit;
             } else {
                 $e = oci_error($stmt);
-                echo "<p style='color:red;'>Hiba: " . htmlentities($e['message']) . "</p>";
+                echo "<p styles='color:red;'>Hiba: " . htmlentities($e['message']) . "</p>";
             }
 
             oci_free_statement($stmt);
@@ -52,10 +52,35 @@ if (isset($_POST['submit'])) {
 oci_close($conn);
 ?>
 
-<form method="POST" action="">
-    <input type="text" name="username" placeholder="Felhasználónév" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Jelszó" required><br>
-    <input type="password" name="confirm_password" placeholder="Jelszó újra" required><br>
-    <button type="submit" name="submit">Regisztrálok</button>
-</form>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <link rel="stylesheet" href="styles/style.css"> <!-- Az Ön CSS fájlja -->
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Regisztráció</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <input type="text" name="username" id="username" placeholder="Felhasználónév" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" id="password" placeholder="Jelszó" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Jelszó újra" required>
+        </div>
+        <button type="submit" name="submit" class="btn-submit">Regisztrálok</button>
+    </form>
+    <p>Ha van fiókod, <a href="login.php">jelentkezz be!</a></p>
+</div>
+
+</body>
+</html>
