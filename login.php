@@ -56,7 +56,7 @@ oci_close($conn);
         <div class="form-group">
             <input type="password" name="password" placeholder="Jelszó" required>
         </div>
-        <button type="submit" name="login">Bejelentkezés</button>
+        <button type="submit" name="login" class="btn-submit">Bejelentkezés</button>
     </form>
     <p>Ha még nincs fiókod, <a href="signup.php">regisztrálj itt!</a></p>
 </div>

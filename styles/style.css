@@ -1,100 +1,116 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #333;
     margin: 0;
     padding: 0;
-    text-align: center;
-    color: #f4f4f4;
+    background-color: #4CAF50;
+    color: #333;
+    line-height: 1.6;
     overflow-x: hidden;
+}
+
+h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .login-container {
     width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.login-container h2 {
-    color: #34495e;
-    margin-bottom: 20px;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-    width: 100%;
+label {
+    font-size: 18px;
+    color: #333;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"]{
     padding: 12px;
-    font-size: 1em;
+    font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fafafa;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #3498db;
+}
+
+button.btn-submit {
     background-color: #3498db;
-    border: none;
     color: white;
-    font-size: 1.2em;
-    border-radius: 5px;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-button:hover {
+button.btn-submit:hover {
     background-color: #2980b9;
+    transform: scale(1.05);
 }
 
-.error-message {
-    color: red;
-    font-size: 1.1em;
+p {
     text-align: center;
+    font-size: 16px;
 }
 
-.login-container p {
-    margin-top: 20px;
-    color: #333333;
-}
-
-.login-container a {
+p a {
     color: #3498db;
     text-decoration: none;
+    font-weight: 600;
 }
 
-.login-container a:hover {
+p a:hover {
     text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-        height: auto;
+    .login-container {
+        padding: 30px;
+        margin: 30px auto;
     }
 
-    .menu ul {
-        flex-direction: column;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        display: block;
+    h2 {
+        font-size: 28px;
     }
+}
 
-    .menu ul li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .menu a {
-        padding: 15px;
-        width: 100%;
-        box-sizing: border-box;
-    }
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

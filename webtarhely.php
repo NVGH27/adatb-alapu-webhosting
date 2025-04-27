@@ -50,7 +50,6 @@ if (!oci_execute($stmt)) {
         }
         ?>
     </div>
-
 </div>
 </body>
 </html>
