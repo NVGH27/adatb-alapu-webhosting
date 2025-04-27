@@ -56,9 +56,32 @@ if (isset($_GET['delete_id'])) {
     oci_free_statement($stmt_delete);
 }
 
+if (isset($_GET['delete_reklam_id'])) {
+    $delete_reklam_id = $_GET['delete_reklam_id'];
+    $sql_delete_reklam = "DELETE FROM Reklam WHERE reklam_id = :delete_reklam_id";
+    $stmt_delete_reklam = oci_parse($conn, $sql_delete_reklam);
+
+    oci_bind_by_name($stmt_delete_reklam, ":delete_reklam_id", $delete_reklam_id);
+
+    if (oci_execute($stmt_delete_reklam)) {
+        $message = "<p class='success'>Reklám sikeresen törölve!</p>";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        $e = oci_error($stmt_delete_reklam);
+        $message = "<p class='error'>Hiba: " . htmlentities($e['message']) . "</p>";
+    }
+
+    oci_free_statement($stmt_delete_reklam);
+}
+
 $sql = "SELECT dijcsomag_id, dijcsomag_nev, ar FROM Dijcsomag";
 $stmt = oci_parse($conn, $sql);
 oci_execute($stmt);
+
+$sql_reklam = "SELECT reklam_id, szoveg, hivatkozas FROM Reklam";
+$stmt_reklam = oci_parse($conn, $sql_reklam);
+oci_execute($stmt_reklam);
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +95,7 @@ oci_execute($stmt);
 </head>
 <body>
 <div class="container">
-    <h2>Admin Panel - Webtárhely Csomagok</h2>
+    <h2>Admin Panel</h2>
 
     <div class="message-container">
         <?php if (!empty($message)) { echo $message; } ?>
@@ -107,6 +130,31 @@ oci_execute($stmt);
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+<div class="container">
+    <div class="admin-container">
+    <h3>Feltöltött Reklámok</h3>
+    <table class="packages-table">
+        <thead>
+        <tr>
+            <th>Szöveg</th>
+            <th>Hivatkozás</th>
+            <th>Akciók</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php while ($row = oci_fetch_assoc($stmt_reklam)) { ?>
+            <tr>
+                <td><?php echo htmlspecialchars($row['SZOVEG']); ?></td>
+                <td><a href="<?php echo htmlspecialchars($row['HIVATKOZAS']); ?>" target="_blank"><?php echo htmlspecialchars($row['HIVATKOZAS']); ?></a></td>
+                <td>
+                    <a href="?delete_reklam_id=<?php echo $row['REKLAM_ID']; ?>" class="action-btn" onclick="return confirm('Biztosan törölni szeretnéd ezt a reklámot?');">Törlés</a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
     </div>
 </div>
 </body>
