@@ -6,8 +6,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // A lekérdezés most a szerepkor mezőt is lekéri
-    $sql = "SELECT FELHASZNALONEV, JELSZO, SZEREPKOR FROM Felhasznalo WHERE felhasznalonev = :username";
+    $sql = "SELECT FELHASZNALONEV, FELHASZNALO_ID, JELSZO, SZEREPKOR FROM Felhasznalo WHERE felhasznalonev = :username";
     $stmt = oci_parse($conn, $sql);
     oci_bind_by_name($stmt, ":username", $username);
 
@@ -19,7 +18,8 @@ if (isset($_POST['login'])) {
 
         if (password_verify($password, $hashed_password_from_db)) {
             $_SESSION['username'] = $row['FELHASZNALONEV'];
-            $_SESSION['role'] = $row['SZEREPKOR'];  // Szerepkor beállítása
+            $_SESSION['user_id'] = $row['FELHASZNALO_ID'];
+            $_SESSION['role'] = $row['SZEREPKOR'];
             $_SESSION['success_message'] = "Sikeres bejelentkezés!";
             header('Location: index.php');
             exit;

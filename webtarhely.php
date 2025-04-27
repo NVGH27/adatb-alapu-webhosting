@@ -34,12 +34,12 @@ if (!oci_execute($stmt)) {
                 <p>Ár: <?php echo htmlspecialchars($row['AR']); ?> Ft</p>
                 <?php if (isset($_SESSION['username'])) {
                     $in_cart = isset($_SESSION['cart']) && in_array($row['DIJCSOMAG_ID'], $_SESSION['cart']);
-                    $button_text = $in_cart ? 'Megvásárolt' : 'Megvásárlom';
+                    $button_text = "Megvásárlom";
                     ?>
                     <button
                             class="cart-button"
                             data-package-id="<?php echo htmlspecialchars($row['DIJCSOMAG_ID']); ?>"
-                    >
+                            onclick="confirmPurchase(<?php echo $row['DIJCSOMAG_ID']; ?>, '<?php echo $row['DIJCSOMAG_NEV']; ?>', <?php echo $row['AR']; ?>)">
                         <?php echo $button_text; ?>
                     </button>
                 <?php } else { ?>
@@ -51,6 +51,13 @@ if (!oci_execute($stmt)) {
         ?>
     </div>
 </div>
+<script>
+    function confirmPurchase(packageId, packageName, packagePrice) {
+        if (confirm("Biztosan meg szeretnéd vásárolni a csomagot: " + packagePrice + " Ft-ért?")) {
+            window.location.href = "purchase.php?id=" + packageId + "&price=" + packagePrice;
+        }
+    }
+</script>
 </body>
 </html>
 

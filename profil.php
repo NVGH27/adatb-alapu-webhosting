@@ -21,17 +21,14 @@ if ($row) {
     exit;
 }
 
-// Ha a felhasználó frissíteni akarja az adatokat
 if (isset($_POST['update'])) {
     $new_email = trim($_POST['email']);
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Ellenőrizzük, hogy a jelszavak megegyeznek-e
     if ($new_password !== $confirm_password) {
         echo "<p styles='color:red;'>A jelszavak nem egyeznek!</p>";
     } else {
-        // Ha van új jelszó, akkor hash-eljük azt
         if (!empty($new_password)) {
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
             $sql_update = "UPDATE Felhasznalo SET EMAIL = :email, JELSZO = :password WHERE FELHASZNALONEV = :username";
@@ -39,7 +36,6 @@ if (isset($_POST['update'])) {
             oci_bind_by_name($stmt_update, ":email", $new_email);
             oci_bind_by_name($stmt_update, ":password", $hashed_password);
         } else {
-            // Ha nincs új jelszó, akkor csak az emailt frissítjük
             $sql_update = "UPDATE Felhasznalo SET EMAIL = :email WHERE FELHASZNALONEV = :username";
             $stmt_update = oci_parse($conn, $sql_update);
             oci_bind_by_name($stmt_update, ":email", $new_email);
@@ -53,12 +49,10 @@ if (isset($_POST['update'])) {
             echo "<p styles='color:red;'>Hiba történt a frissítés során: " . htmlentities($e['message']) . "</p>";
         }
 
-        // Ügyelj arra, hogy a statementet mindig felszabadítsd
         oci_free_statement($stmt_update);
     }
 }
 
-// Bezárjuk a statement-et
 oci_free_statement($stmt);
 oci_close($conn);
 ?>
