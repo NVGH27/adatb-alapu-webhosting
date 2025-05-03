@@ -87,6 +87,22 @@ h2 {
     transform: scale(1.05);
 }
 
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: scale(1.01);
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 40px 15px;

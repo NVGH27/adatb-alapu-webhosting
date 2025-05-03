@@ -15,7 +15,7 @@ session_start();
         <li><a href="domain.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'domain.php') ? 'class="active"' : ''; ?>>Domain</a></li>
         <?php if (isset($_SESSION['username'])): ?>
             <li><a href="profil.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'profil.php') ? 'class="active"' : ''; ?>>Profil</a></li>
-            <li><a href="logout.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'logout.php') ? 'class="active"' : ''; ?>>Kijelentkezés (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a></li>
+            <li><a href="logout.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'logout.php') ? 'class="active"' : ''; ?>>Kijelentkezés</a></li>
         <?php else: ?>
             <li><a href="login.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'class="active"' : ''; ?>>Bejelentkezés</a></li>
             <li><a href="signup.php" <?php echo (basename($_SERVER['PHP_SELF']) == 'signup.php') ? 'class="active"' : ''; ?>>Regisztráció</a></li>

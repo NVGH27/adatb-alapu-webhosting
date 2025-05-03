@@ -47,7 +47,8 @@ label {
 
 input[type="email"],
 input[type="password"],
-input[type="text"]{
+input[type="text"],
+select{
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ddd;
