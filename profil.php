@@ -22,7 +22,6 @@ if ($row) {
     exit;
 }
 
-// Webtárhelyek lekérdezése
 $sql_webtarhely = "SELECT * FROM Webtarhely WHERE FELHASZNALO_ID = :felhasznalo_id";
 $stmt_webtarhely = oci_parse($conn, $sql_webtarhely);
 oci_bind_by_name($stmt_webtarhely, ":felhasznalo_id", $felhasznalo_id);

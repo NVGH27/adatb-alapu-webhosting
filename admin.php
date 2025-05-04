@@ -148,6 +148,17 @@ $sql_stats = "
 ";
 $stmt_stats = oci_parse($conn, $sql_stats);
 oci_execute($stmt_stats);
+
+
+$sql_megjelenitett_reklam = "
+    SELECT w.webtarhely_id, COUNT(m.reklam_id) AS reklam_darabszam
+    FROM  Webtarhely w
+    JOIN  Megjelenit m ON w.webtarhely_id = m.webtarhely_id
+    GROUP BY w.webtarhely_id
+    ORDER BY w.webtarhely_id
+";
+$stmt_megjelenitett_reklam = oci_parse($conn, $sql_megjelenitett_reklam);
+oci_execute($stmt_megjelenitett_reklam);
 ?>
 
 <!DOCTYPE html>
@@ -219,23 +230,19 @@ oci_execute($stmt_stats);
                 </td>
             </tr>
         <?php } ?>
+        <tr class="new-package-row">
+            <form method="POST" action="">
+                <td><input type="text" name="szoveg" id="szoveg" placeholder="Reklám szöveg:" required></td>
+                <td><input type="url" name="hivatkozas" id="hivatkozas" placeholder="Hivatkozás:" required min="1000">
+                <td><button type="submit" name="submit_reklam" class="submit-btn">Hozzáadás</button></td>
+            </form>
+        </tr>
         </tbody>
     </table>
     </div>
-    <h3>Új reklám hozzáadása</h3>
-    <form method="POST" action="">
-        <div>
-            <label for="szoveg">Reklám szöveg:</label>
-            <input type="text" name="szoveg" id="szoveg" required>
-        </div>
-        <div>
-            <label for="hivatkozas">Hivatkozás:</label>
-            <input type="url" name="hivatkozas" id="hivatkozas" required>
-        </div>
-        <button type="submit" name="submit_reklam" class="submit-btn">Hozzáadás</button>
-    </form>
 </div>
 <div class="container">
+    <div class="admin-container">
     <h3>Statisztika</h3>
     <table class="packages-table">
         <thead>
@@ -253,7 +260,26 @@ oci_execute($stmt_stats);
         <?php } ?>
         </tbody>
     </table>
-
+        <div class="admin-container">
+            <h3>Megjelenített reklámok</h3>
+            <table class="packages-table">
+                <thead>
+                <tr>
+                    <th>Webtárhely ID</th>
+                    <th>Reklámok száma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php while ($row = oci_fetch_assoc($stmt_megjelenitett_reklam)) { ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['WEBTARHELY_ID']); ?></td>
+                        <td><?php echo htmlspecialchars($row['REKLAM_DARABSZAM']); ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div class="container">
     <form method="post" action="">
