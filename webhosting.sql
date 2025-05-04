@@ -134,6 +134,61 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE TRIGGER trg_szamla_letrehozas
+AFTER INSERT ON Rendelkezik
+FOR EACH ROW
+DECLARE
+v_ar NUMBER;
+BEGIN
+SELECT ar INTO v_ar
+FROM Dijcsomag
+WHERE dijcsomag_id = :NEW.dijcsomag_id;
+
+INSERT INTO Szamla (szamla_id, osszeg, datum, allapot, rendelkezes_id)
+VALUES (
+           szamla_id_seq.NEXTVAL,
+           v_ar,
+           SYSDATE,
+           'Függőben',
+           :NEW.rendelkezes_id
+       );
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_szamla_allapot_valtozas
+AFTER UPDATE ON Szamla
+                 FOR EACH ROW
+BEGIN
+    IF :NEW.allapot = 'Fizetve' THEN
+UPDATE Webtarhely
+SET statusz = 'Aktív'
+WHERE webtarhely_id = (
+    SELECT webtarhely_id
+    FROM Rendelkezik
+    WHERE rendelkezes_id = :NEW.rendelkezes_id
+);
+END IF;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE fizetesi_hatarido_ellenorzes IS
+BEGIN
+FOR sz IN (
+        SELECT s.rendelkezes_id, r.felhasznalo_id
+        FROM Szamla s
+        JOIN Rendelkezik r ON s.rendelkezes_id = r.rendelkezes_id
+        WHERE s.allapot IN ('Függőben')
+    ) LOOP
+UPDATE Webtarhely
+SET statusz = 'Inaktív'
+WHERE felhasznalo_id = sz.felhasznalo_id;
+UPDATE Szamla
+SET allapot = 'Késedelmes'
+WHERE rendelkezes_id = sz.rendelkezes_id;
+END LOOP;
+END;
+/
+
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Alap', 5000);
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Standard', 10000);
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Prémium', 15000);

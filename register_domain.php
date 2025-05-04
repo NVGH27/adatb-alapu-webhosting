@@ -12,8 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $domain_type = $_POST['domain_tipus'];
     $webtarhely_id = $_POST['webtarhely_id'];
 
-    $full_domain = strtolower($domain_name . $domain_type);
-
     $check_sql = "SELECT domain_nev FROM Domain WHERE LOWER(domain_nev) = :domain";
     $stmt_check = oci_parse($conn, $check_sql);
     oci_bind_by_name($stmt_check, ":domain", $full_domain);
@@ -29,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $insert_sql = "INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id)
                    VALUES (:domain_nev, :domain_tipus, ADD_MONTHS(SYSDATE, 1), :webtarhely_id)";
     $stmt_insert = oci_parse($conn, $insert_sql);
-    oci_bind_by_name($stmt_insert, ":domain_nev", $full_domain);
+    oci_bind_by_name($stmt_insert, ":domain_nev", $domain_name);
     oci_bind_by_name($stmt_insert, ":domain_tipus", $domain_type);
     oci_bind_by_name($stmt_insert, ":webtarhely_id", $webtarhely_id);
 
     if (oci_execute($stmt_insert)) {
-        header("Location: domain.php?success=Sikeresen regisztráltad a domaint: $full_domain");
+        header("Location: domain.php?success=Sikeresen regisztráltad a domaint: $domain_name + $domain_type");
     } else {
         $e = oci_error($stmt_insert);
         header("Location: domain.php?error=" . urlencode("Hiba: " . $e['message']));

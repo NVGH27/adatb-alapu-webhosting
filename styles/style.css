@@ -48,6 +48,7 @@ label {
 input[type="email"],
 input[type="password"],
 input[type="text"],
+input[type="url"],
 select{
     padding: 12px;
     font-size: 16px;
@@ -93,6 +94,10 @@ p a {
 
 p a:hover {
     text-decoration: underline;
+}
+
+.btn-fizet {
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {

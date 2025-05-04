@@ -20,6 +20,7 @@ if (isset($_GET['id']) && isset($_GET['price'])) {
     $package = oci_fetch_assoc($stmt_check);
 
     if ($package) {
+        // 1. Rendelkezik rekord beszúrása (trigger automatikusan létrehozza a számlát)
         $sql_insert_rendelkezik = "INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) 
                                    VALUES (:user_id, :package_id) 
                                    RETURNING rendelkezes_id INTO :rendelkezes_id";
@@ -30,26 +31,13 @@ if (isset($_GET['id']) && isset($_GET['price'])) {
 
         if (oci_execute($stmt_insert_rendelkezik)) {
             $sql_insert_webtarhely = "INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
-                                      VALUES (100, 'Aktív', SYSDATE, :user_id)";
+                                      VALUES (100, 'Függőben', SYSDATE, :user_id)";
             $stmt_insert_webtarhely = oci_parse($conn, $sql_insert_webtarhely);
             oci_bind_by_name($stmt_insert_webtarhely, ":user_id", $user_id);
 
             if (oci_execute($stmt_insert_webtarhely)) {
-                // Miután létrejött a webtárhely, beszúrjuk a számlát
-                $sql_insert_szamla = "INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) 
-                                      VALUES (:osszeg, SYSDATE, 'Fizetve', :rendelkezes_id)";
-                $stmt_insert_szamla = oci_parse($conn, $sql_insert_szamla);
-                oci_bind_by_name($stmt_insert_szamla, ":osszeg", $package_price);
-                oci_bind_by_name($stmt_insert_szamla, ":rendelkezes_id", $rendelkezes_id);
-
-                if (oci_execute($stmt_insert_szamla)) {
-                    header("Location: profil.php");
-                    exit;
-                } else {
-                    echo "Hiba történt a számla rögzítésekor!";
-                }
-
-                oci_free_statement($stmt_insert_szamla);
+                header("Location: profil.php");
+                exit;
             } else {
                 echo "Hiba történt a webtárhely rögzítésekor!";
             }
@@ -69,4 +57,4 @@ if (isset($_GET['id']) && isset($_GET['price'])) {
 }
 
 oci_close($conn);
-
+?>

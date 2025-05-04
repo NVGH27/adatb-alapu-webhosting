@@ -52,7 +52,7 @@ $error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : null;
         <h2>Domain regisztráció</h2>
 
         <form method="GET" action="domain.php" class="domain-search-form">
-            <label for="kereses">Domain név keresése:</label>
+            <label for="kereses">Melyik domain nevet szeretnéd?</label>
             <input type="text" name="kereses" id="kereses" placeholder="pl. sajatoldal" required>
             <input type="submit" value="Keresés">
         </form>

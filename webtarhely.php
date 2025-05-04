@@ -53,7 +53,7 @@ if (!oci_execute($stmt)) {
 </div>
 <script>
     function confirmPurchase(packageId, packageName, packagePrice) {
-        if (confirm("Biztosan meg szeretnéd vásárolni a csomagot: " + packagePrice + " Ft-ért?")) {
+        if (confirm("Biztosan szeretnéd ezt a csomagot " + packagePrice + " Ft-ért? A fizetést a számláidnál tudod elvégezni.")) {
             window.location.href = "purchase.php?id=" + packageId + "&price=" + packagePrice;
         }
     }
