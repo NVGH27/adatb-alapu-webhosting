@@ -205,6 +205,57 @@ INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
 VALUES ('Eve', 'eve@example.com', 'pw123', 'user');
 INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
 VALUES ('Carol', 'carol@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Kovács Péter', 'kovacs.peter@example.com', 'pw123', 'admin');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Nagy Anna', 'nagy.anna@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Szabó Gábor', 'szabo.gabor@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Tóth Eszter', 'toth.eszter@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Horváth László', 'horvath.laszlo@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Farkas Júlia', 'farkas.julia@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Varga Dávid', 'varga.david@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Balogh Katalin', 'balogh.katalin@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Papp Zoltán', 'papp.zoltan@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Kiss Éva', 'kiss.eva@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Molnár Attila', 'molnar.attila@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Kerekes Andrea', 'kerekes.andrea@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Németh Tamás', 'nemeth.tamas@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Szalai Lilla', 'szalai.lilla@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Fülöp Gergő', 'fulop.gergo@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Benedek Erika', 'benedek.erika@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Szőke Roland', 'szoke.roland@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Major Vivien', 'major.vivien@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Vincze Norbert', 'vincze.norbert@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Horváth Anna', 'horvath.anna@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Kiss Péter', 'kiss.peter@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Nagy Béla', 'nagy.bela@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Varga Éva', 'varga.eva@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Tóth Gábor', 'toth.gabor@example.com', 'pw123', 'user');
+INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
+VALUES ('Fekete Anna', 'fekete.anna@example.com', 'pw123', 'admin');
+
 
 INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
 VALUES (100, 'Aktív', SYSDATE, 1);
@@ -216,6 +267,57 @@ INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
 VALUES (400, 'Aktív', SYSDATE, 4);
 INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
 VALUES (500, 'Aktív', SYSDATE, 5);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (200, 'Inaktív', SYSDATE, 6);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (220, 'Aktív', SYSDATE, 7);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (240, 'Inaktív', SYSDATE, 8);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (260, 'Aktív', SYSDATE, 9);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (280, 'Inaktív', SYSDATE, 10);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (300, 'Aktív', SYSDATE, 11);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (320, 'Inaktív', SYSDATE, 12);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (340, 'Aktív', SYSDATE, 13);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (360, 'Inaktív', SYSDATE, 14);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (380, 'Aktív', SYSDATE, 15);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (400, 'Inaktív', SYSDATE, 16);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (420, 'Aktív', SYSDATE, 17);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (440, 'Inaktív', SYSDATE, 18);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (460, 'Aktív', SYSDATE, 19);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (480, 'Inaktív', SYSDATE, 20);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (500, 'Aktív', SYSDATE, 21);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (600, 'Inaktív', SYSDATE, 22);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (700, 'Aktív', SYSDATE, 23);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (800, 'Inaktív', SYSDATE, 24);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (900, 'Aktív', SYSDATE, 25);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (1000, 'Inaktív', SYSDATE, 26);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (1100, 'Aktív', SYSDATE, 27);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (1200, 'Inaktív', SYSDATE, 28);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (1300, 'Aktív', SYSDATE, 29);
+INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
+VALUES (1400, 'Inaktív', SYSDATE, 30);
+
 
 INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id)
 VALUES ('Akciók!', 'https://reklam1.hu', 1);
@@ -233,9 +335,82 @@ INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (2, 2);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (3, 3);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (4, 4);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (5, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (1, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (2, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (3, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (4, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (5, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (6, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (7, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (8, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (9, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (10, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (11, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (12, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (13, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (14, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (15, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (16, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (17, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (18, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (19, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (20, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (21, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (22, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (23, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (24, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (25, 5);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (26, 1);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (27, 2);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (28, 3);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (29, 4);
+INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (30, 5);
+
 
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 1);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Fizetett', 2);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Fizetett', 3);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Fizetett', 4);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Fizetett', 5);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Függőben', 6);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Függőben', 7);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Függőben', 8);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Függőben', 9);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Függőben', 10);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 11);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Fizetett', 12);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Fizetett', 13);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Fizetett', 14);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Fizetett', 15);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 16);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Fizetett', 17);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Fizetett', 18);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Fizetett', 19);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Fizetett', 20);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Függőben', 26);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Függőben', 27);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Függőben', 28);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Függőben', 29);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Függőben', 30);
+INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 31);
+
+
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain1.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 1);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain2.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 2);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain3.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 3);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain4.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 4);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain5.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 5);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain6.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 6);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain7.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 7);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain8.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 8);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain9.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 9);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain10.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 10);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain11.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 11);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain12.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 12);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain13.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 13);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain14.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 14);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain15.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 15);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain16.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 16);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain17.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 17);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain18.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 18);
+INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain19.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 19);
