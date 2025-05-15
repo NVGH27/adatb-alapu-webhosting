@@ -64,6 +64,16 @@ $stmt = oci_parse($conn, $sql);
 oci_bind_by_name($stmt, ":felhasznalo_id", $_SESSION['felhasznalo_id']);
 oci_execute($stmt);
 
+$top_link_sql = "
+    SELECT hivatkozas, COUNT(*) AS db
+    FROM Reklam
+    GROUP BY hivatkozas
+    ORDER BY db DESC
+    FETCH FIRST 1 ROWS ONLY
+";
+$top_link_stmt = oci_parse($conn, $top_link_sql);
+oci_execute($top_link_stmt);
+$top_link_row = oci_fetch_assoc($top_link_stmt);
 ?>
 
 <!DOCTYPE html>
@@ -93,6 +103,21 @@ oci_execute($stmt);
 
             <button type="submit" name="submit" class="submit-btn">Hozzáadás</button>
         </form>
+        <?php if ($top_link_row): ?>
+            <div class="top-reklam">
+                <h3>Leggyakrabban hirdetett oldal:</h3>
+                <p>
+                    <a href="<?php echo htmlspecialchars($top_link_row['HIVATKOZAS']); ?>" target="_blank">
+                        <?php echo htmlspecialchars($top_link_row['HIVATKOZAS']); ?>
+                    </a>
+                    (<?php echo $top_link_row['DB']; ?> reklámmal)
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <div class="message-container">
+            <?php if (!empty($message)) { echo $message; } ?>
+        </div>
     </div>
 
     <div class="packages-table">

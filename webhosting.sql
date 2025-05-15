@@ -189,6 +189,20 @@ END LOOP;
 END;
 /
 
+CREATE OR REPLACE FUNCTION felhasznalo_havi_kiadas(p_felhasznalo_id IN NUMBER)
+RETURN NUMBER IS
+  v_osszeg NUMBER := 0;
+BEGIN
+SELECT NVL(SUM(sz.osszeg), 0)
+INTO v_osszeg
+FROM Szamla sz
+         JOIN Rendelkezik r ON sz.rendelkezes_id = r.rendelkezes_id
+WHERE r.felhasznalo_id = p_felhasznalo_id
+  AND TO_CHAR(sz.datum, 'MMYYYY') = TO_CHAR(SYSDATE, 'MMYYYY');
+RETURN v_osszeg;
+END;
+/
+
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Alap', 5000);
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Standard', 10000);
 INSERT INTO Dijcsomag (dijcsomag_nev, ar) VALUES ('Prémium', 15000);
@@ -256,7 +270,6 @@ VALUES ('Tóth Gábor', 'toth.gabor@example.com', 'pw123', 'user');
 INSERT INTO Felhasznalo (felhasznalonev, email, jelszo, szerepkor)
 VALUES ('Fekete Anna', 'fekete.anna@example.com', 'pw123', 'admin');
 
-
 INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
 VALUES (100, 'Aktív', SYSDATE, 1);
 INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
@@ -318,7 +331,6 @@ VALUES (1300, 'Aktív', SYSDATE, 29);
 INSERT INTO Webtarhely (meret, statusz, letrehozas, felhasznalo_id)
 VALUES (1400, 'Inaktív', SYSDATE, 30);
 
-
 INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id)
 VALUES ('Akciók!', 'https://reklam1.hu', 1);
 INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id)
@@ -329,6 +341,17 @@ INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id)
 VALUES ('Tárhely bővítés', 'https://reklam4.hu', 4);
 INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id)
 VALUES ('Ingyenes SSL', 'https://reklam5.hu', 5);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Gyors szerverek', 'https://reklam6.hu', 6);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Kedvezményes csomagok', 'https://reklam7.hu', 7);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('24/7 ügyfélszolgálat', 'https://reklam8.hu', 8);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Ingyenes domain', 'https://reklam9.hu', 9);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Prémium támogatás', 'https://reklam10.hu', 10);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Webshop megoldások', 'https://reklam11.hu', 11);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Professzionális email', 'https://reklam12.hu', 12);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Reszponzív dizájn', 'https://reklam13.hu', 13);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Adatmentés', 'https://reklam14.hu', 14);
+INSERT INTO Reklam (szoveg, hivatkozas, felhasznalo_id) VALUES ('Biztonságos fizetés', 'https://reklam15.hu', 15);
+
 
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (1, 1);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (2, 2);
@@ -366,7 +389,6 @@ INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (28, 3);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (29, 4);
 INSERT INTO Rendelkezik (felhasznalo_id, dijcsomag_id) VALUES (30, 5);
 
-
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 1);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (10000, SYSDATE, 'Fizetett', 2);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDATE, 'Fizetett', 3);
@@ -393,7 +415,6 @@ INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (15000, SYSDA
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (20000, SYSDATE, 'Függőben', 29);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (30000, SYSDATE, 'Függőben', 30);
 INSERT INTO Szamla (osszeg, datum, allapot, rendelkezes_id) VALUES (5000, SYSDATE, 'Fizetett', 31);
-
 
 INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain1.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 1);
 INSERT INTO Domain (domain_nev, domain_tipus, lejarati_datum, webtarhely_id) VALUES ('domain2.hu', '.hu', ADD_MONTHS(SYSDATE, 12), 2);

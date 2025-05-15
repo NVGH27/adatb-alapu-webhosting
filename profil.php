@@ -48,6 +48,18 @@ while ($domain = oci_fetch_assoc($stmt_domain)) {
     $domainok[$domain['WEBTARHELY_ID']] = $domain;
 }
 
+$sql_kiadas = "SELECT felhasznalo_havi_kiadas(:felhasznalo_id) AS havi_kiadas FROM dual";
+$stmt_kiadas = oci_parse($conn, $sql_kiadas);
+oci_bind_by_name($stmt_kiadas, ":felhasznalo_id", $felhasznalo_id);
+oci_execute($stmt_kiadas);
+
+$havi_kiadas = 0;
+if ($row_kiadas = oci_fetch_assoc($stmt_kiadas)) {
+    $havi_kiadas = $row_kiadas['HAVI_KIADAS'];
+}
+
+oci_free_statement($stmt_kiadas);
+
 if (isset($_POST['update'])) {
     $new_email = trim($_POST['email']);
     $new_password = $_POST['new_password'];
@@ -233,6 +245,7 @@ if (isset($_POST['lemond'])) {
         <?php endwhile; ?>
         </tbody>
     </table>
+    <p><strong>Havi kiadás:</strong> <?php echo number_format($havi_kiadas, 0, '', ' '); ?> Ft</p>
 </div>
 </body>
 </html>
