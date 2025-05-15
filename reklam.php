@@ -64,16 +64,19 @@ $stmt = oci_parse($conn, $sql);
 oci_bind_by_name($stmt, ":felhasznalo_id", $_SESSION['felhasznalo_id']);
 oci_execute($stmt);
 
-$top_link_sql = "
-    SELECT hivatkozas, COUNT(*) AS db
-    FROM Reklam
-    GROUP BY hivatkozas
-    ORDER BY db DESC
-    FETCH FIRST 1 ROWS ONLY
+$sql_top_ad = "
+SELECT r.hivatkozas, COUNT(*) AS megjelenesek_szama
+FROM Reklam r
+JOIN Megjelenit m ON r.reklam_id = m.reklam_id
+GROUP BY r.hivatkozas
+ORDER BY megjelenesek_szama DESC
+FETCH FIRST 1 ROWS ONLY
 ";
-$top_link_stmt = oci_parse($conn, $top_link_sql);
-oci_execute($top_link_stmt);
-$top_link_row = oci_fetch_assoc($top_link_stmt);
+
+$stmt_top = oci_parse($conn, $sql_top_ad);
+oci_execute($stmt_top);
+$top_ad = oci_fetch_assoc($stmt_top);
+
 ?>
 
 <!DOCTYPE html>
@@ -103,23 +106,21 @@ $top_link_row = oci_fetch_assoc($top_link_stmt);
 
             <button type="submit" name="submit" class="submit-btn">Hozzáadás</button>
         </form>
-        <?php if ($top_link_row): ?>
-            <div class="top-reklam">
-                <h3>Leggyakrabban hirdetett oldal:</h3>
-                <p>
-                    <a href="<?php echo htmlspecialchars($top_link_row['HIVATKOZAS']); ?>" target="_blank">
-                        <?php echo htmlspecialchars($top_link_row['HIVATKOZAS']); ?>
-                    </a>
-                    (<?php echo $top_link_row['DB']; ?> reklámmal)
-                </p>
-            </div>
-        <?php endif; ?>
-
-        <div class="message-container">
-            <?php if (!empty($message)) { echo $message; } ?>
-        </div>
     </div>
-
+    <?php if ($top_ad) { ?>
+        <div class="top-reklam">
+            <h3>Legtöbbször megjelenített reklám</h3>
+            <p>
+                <strong>Hivatkozás:</strong>
+                <a href="<?php echo htmlspecialchars($top_ad['HIVATKOZAS']); ?>" target="_blank">
+                    <?php echo htmlspecialchars($top_ad['HIVATKOZAS']); ?>
+                </a>
+                <br>
+                <strong>Megjelenések száma:</strong>
+                <?php echo $top_ad['MEGJELENESEK_SZAMA']; ?>
+            </p>
+        </div>
+    <?php } ?>
     <div class="packages-table">
         <h3>Reklámok</h3>
         <table class="reklam-table">
